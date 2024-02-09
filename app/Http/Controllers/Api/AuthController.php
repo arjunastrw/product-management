@@ -9,25 +9,44 @@ use App\Models\Users;
 
 class AuthController extends Controller
 {
+    /**
+     * Show the login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        return view('layouts.login');
+    }
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
-        // Ambil data grup berdasarkan nama grup yang diberikan
-        $user = Users::where('email', $credentials['email'])->first();
-
-        // Periksa apakah grup ditemukan dan kata sandi sesuai
-        if ($user && password_verify($credentials['password'], $user->password)) {
-            return response()->json(['message' => 'Login Success'], 200);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('authToken')->plainTextToken;
+            return response()->json(['token' => $token], 200);
         }
 
-        // Autentikasi gagal
-        return response()->json(['message' => 'Email or Password is Incorrect'], 401);
+        return response()->json(['message' => 'Unauthorized'], 401);
     }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function logout(Request $request)
     {
         Auth::logout();
 
-        return response()->json(['message' => 'Logout Success'], 200);
+        return response()->json(['message' => 'Logged out successfully'], 200);
     }
 }

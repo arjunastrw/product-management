@@ -10,6 +10,15 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
+    /**
+     * Show the login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegisterForm()
+    {
+        return view('layouts.register');
+    }
     // Registrasi pengguna baru
     public function register(Request $request)
     {

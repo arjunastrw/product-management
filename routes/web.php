@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // route welcome
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('layouts.app');
 });
+// route register
+Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [UserController::class, 'register']);
+// route login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+// Route Dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard')->middleware('auth');
