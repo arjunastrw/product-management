@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 
 class DashboardController extends Controller
 {
@@ -14,6 +16,7 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        return view('layouts.dashboard');
+        $products = Product::all();
+        return view('layouts.dashboard')->with('products', $products);
     }
 }
