@@ -1,0 +1,26 @@
+SUPER ADMIN = 
+    "username": "superadmin",
+    "email": "superadmin@example.com",
+    "password": "Password123!",
+    "password_confirmation": "Password123!",
+    "contact": "123456778",
+    "roles": "Lead Warehouse"}
+
+
+
+admin 1 = 
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "password": "Password123!",
+    "password_confirmation": "Password123!",
+    "contact": "123456789",
+    "roles": "Lead Warehouse"
+
+admin 2 =
+    "username": "Lead1",
+    "email": "lead1@example.com",
+    "password": "Password123!",
+    "password_confirmation": "Password123!",
+    "contact": "123456788",
+    "roles": "Lead Warehouse"
+
