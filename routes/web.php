@@ -16,15 +16,15 @@ use App\Http\Controllers\Api\UserController;
 */
 // route welcome
 Route::get('/', function () {
-    return view('layouts.home');
+    return view('layouts.login');
 });
+// Route Dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard')->middleware('auth');
 // route register
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
 // route login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-// Route Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard')->middleware('auth');
