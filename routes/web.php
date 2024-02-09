@@ -16,7 +16,7 @@ use App\Http\Controllers\Api\UserController;
 */
 // route welcome
 Route::get('/', function () {
-    return view('layouts.login');
+    return view('layouts.home');
 });
 // Route Dashboard
 Route::get('/dashboard', function () {

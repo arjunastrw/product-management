@@ -59,6 +59,7 @@
                 </div>
                 </form>
                 <!-- registerr button -->
+                <p class="text-center">Don't have an account?</p>
                 <div class="d-flex justify-content-center mb-3">
                     <form method="GET" action="{{ route('register') }}">
                         <button type="submit" class="btn btn-primary">

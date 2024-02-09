@@ -16,7 +16,7 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return view('layouts.login');
+        return view('layouts.home');
     }
     /**
      * Handle an authentication attempt.
@@ -29,8 +29,8 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('authToken')->plainTextToken;
+            $users = Auth::user();
+            $token = $users->createToken('authToken')->plainTextToken;
             return response()->json(['token' => $token], 200);
         }
 
