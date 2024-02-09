@@ -16,7 +16,7 @@ use App\Http\Controllers\Api\UserController;
 */
 // route welcome
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('layouts.home');
 });
 // route register
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
