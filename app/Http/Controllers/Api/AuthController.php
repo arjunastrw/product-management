@@ -18,6 +18,7 @@ class AuthController extends Controller
     {
         return view('layouts.home');
     }
+
     /**
      * Handle an authentication attempt.
      *
@@ -29,12 +30,12 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $users = Auth::user();
-            $token = $users->createToken('authToken')->plainTextToken;
-            return response()->json(['token' => $token], 200);
+            // Jika autentikasi berhasil, arahkan ke rute dashboard
+            return redirect()->route('dashboard');
         }
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+        // Jika autentikasi gagal, kembali ke halaman login dengan pesan kesalahan
+        return redirect()->route('login')->with('error', 'Invalid credentials');
     }
 
     /**
@@ -47,6 +48,6 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return response()->json(['message' => 'Logged out successfully'], 200);
+        return redirect()->route('login')->with('success', 'Logged out successfully');
     }
 }

@@ -11,9 +11,9 @@
 <body>
     <!-- Main content -->
     <main>
-        <!-- @yield('home') -->
         @yield('content-login')
         @yield('content-register')
+        @yield('dashboard')
     </main>
 </body>
 
